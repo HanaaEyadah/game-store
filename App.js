@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Home from "./storeComponents/Home";
+import ProductList from "./storeComponents/StoreList";
+import { ThemeProvider } from "styled-components";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function App() {
+
+function App() {
+  const theme = {
+    light: {
+      mainColor: "#320145", // main font color
+      backgroundColor: "#bcaec2", // main background color
+      purple: "#66068a",
+    },
+    dark: {
+      mainColor: "#bcaec2", // main font color
+      backgroundColor: "#320145", // main background color
+      purple: "#66068a",
+    },
+  }
+    // const [currentTheme, setCurrentTheme] = useState("light");
+  
+    // const toggleTheme = () =>
+    //   setCurrentTheme(currentTheme === "light" ? "dark" : "light");
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   
+    <ThemeProvider theme={theme.dark}>
+      <StoreList products={products}/>
+      {/* <View>{ProductList}</View>; */}
+      <NavigationContainer>
+      <Home />
+      </NavigationContainer>
+  
+</ThemeProvider>
+  
   );
-}
+  }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  export default App;
